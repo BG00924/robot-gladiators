@@ -12,11 +12,11 @@ var enemyNames = ["Roberto", "Amy Android", "Robo Trumble"];
 //console.log(enemyNames[1]);
 //console.log(enemyNames[2]);
 //console.log(enemyNames.length);
-for(var i = 0; i < enemyNames.length; i++) {
-    console.log(enemyNames[i]);
-    console.log(i);
-    console.log(enemyNames[i] + " is at " + i + " index");
-}
+//for(var i = 0; i < enemyNames.length; i++) {
+    //console.log(enemyNames[i]);
+    //console.log(i);
+    //console.log(enemyNames[i] + " is at " + i + " index");
+//}
 var enemyHealth = 50;
 var enemyAttack = 12;
 
@@ -85,6 +85,13 @@ var fight = function(enemyName) {
 
 //fight(enemyRobot); next line is meant to remove this
 for(var i = 0; i < enemyNames.length; i++) {
+    if (playerHealth > 0) {
+        window.alert("Welcome to Robot Gladiators! Round" + (i + 1));
+    }
+    else {
+        window.alert("You have lost your robot in battle! Game Over!");
+        break;
+    }
     var pickedEnemyName = enemyNames[i];
     enemyHealth=50;
     fight(pickedEnemyName);
