@@ -3,6 +3,7 @@ var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
+
 // you can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
 
@@ -83,20 +84,61 @@ var fight = function(enemyName) {
 };
 
 
-//fight(enemyRobot); next line is meant to remove this
-for(var i = 0; i < enemyNames.length; i++) {
+// function to start a new game
+var startGame = function() {
+    // reset player stat
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
+
+    //fight(enemyRobot)
+    for(var i = 0; i < enemyNames.length; i++) {
+        if (playerHealth > 0) {
+            window.alert("Welcome to Robot Gladiators! Round" + (i + 1));
+        }
+        else {
+            window.alert("You have lost your robot in battle! Game Over!");
+            break;
+        }
+        var pickedEnemyName = enemyNames[i];
+        enemyHealth=50;
+        fight(pickedEnemyName);
+    }    
+    // causes it to play again; removed so endGame can function, function relocated inside endGame
+    // startGame ();
+
+    // after loop ends, player is either out of health or enemies to fight, so run the endGame function
+    endGame();
+};
+
+// function to end the entire game
+var endGame = function () {
+    // if player is still alive, player wins!
     if (playerHealth > 0) {
-        window.alert("Welcome to Robot Gladiators! Round" + (i + 1));
+        window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
     }
     else {
-        window.alert("You have lost your robot in battle! Game Over!");
-        break;
+        window.alert("You've lost your robot in battle.");
     }
-    var pickedEnemyName = enemyNames[i];
-    enemyHealth=50;
-    fight(pickedEnemyName);
-}
 
+    //ask player if they'd like to play again
+    var playAgainConfirm = window.confirm("Would you like to play again?");
+
+    if (playAgainConfirm) {
+        // restart the game
+        startGame();
+    }
+    else {
+        window.alert("Thank you for playing Robot Galdiators! Come back soon!");
+    }
+
+
+};
+
+
+
+// start the game when the page loads
+startGame();
 
 // Game States
 // "WIN" - Player robot has defeated all enemy robots
