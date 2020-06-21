@@ -130,7 +130,7 @@ var shop = function() {
         case "REFILL": //new case
         case "refill":
             //this replaces all below due to the objects created below for playerInfo
-            playerInfoInfo.refillHealth();
+            playerInfo.refillHealth();
             //if (playerInfo.money >= 7) {
                 //window.alert("Refilling player's health by 20 for 7 dollars.");
                 // increase health and decrease money
@@ -174,11 +174,26 @@ var randomNumber = function (min, max) {
     return value;
 }
 
+// function to set name
+var getPlayerName = function() {
+    var name = "";
+
+    // **********************
+    // Add Loop here with prompt and condition
+    while (name === "" || name === null) {
+        name = prompt("What is your Robot's name?")
+    }
+    // **********************
+
+    console.log("Your robot's name is " + name);
+    return name;
+}
+
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
-    money: 10
+    money: 10,
     reset: function () {
         this.health = 100;
         this.money = 10;
@@ -199,7 +214,8 @@ var playerInfo = {
             window.alert("Upgrading player's attack by 6 for 7 dollars.");
             this.attack += 6;
             this.money -= 7;
-        )
+        }
+
         else {
             window.alert("You don't have enough money!");
         }
